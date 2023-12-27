@@ -4,11 +4,13 @@ function Expenses(props) {
     const {expenses}=props
     console.log('ex',expenses);
 
-    let sum=0
+    let expensesum=0
+    let receivedsum=0
 
-    expenses.map((item)=>sum+=item.expense.amount)
+    expenses.map((item)=>expensesum+=item.expense.amount)
+    expenses.map((item)=>receivedsum+=item.expense.receivedAmount)
 
-    console.log(sum);
+    console.log(expensesum);
 
 
 
@@ -27,6 +29,9 @@ function Expenses(props) {
                 <th scope="col" class="px-6 py-3">
                     Amount
                 </th>
+                <th scope="col" class="px-6 py-3">
+                    Received Amount
+                </th>
 
             </tr>
         </thead>
@@ -44,6 +49,10 @@ function Expenses(props) {
                 <td class="px-6 py-4">
                 {expense.expense.amount}
                 </td>
+                <td class="px-6 py-4">
+                {expense.expense.receivedAmount}
+                </td>
+
             </tr>
             ))
            }
@@ -51,7 +60,13 @@ function Expenses(props) {
         <tbody>
             <tr>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
-                    Total: {sum}
+                 Total Received: {receivedsum}
+                </th>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
+                Total Spent : {expensesum}
+                </th>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
+                Balance:{receivedsum-expensesum}
                 </th>
             </tr>
         </tbody>
