@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import Expenses from './expenses'
+import Addparticular from './addparticular'
 
-const Addexpense=()=> {
+const Addexpense=(props)=> {
   const [date,setDate]=useState('')
   const [particular, setParticular]=useState('')
   const [amount, setAmount]=useState(0)
   const [receivedAmount,setReceivedAmount]=useState(0)
   const [expenses, setExpenses] = useState([]);
+
+  const {particulars}=props
 
 const handleAddExpenses=()=>{
   const newExpenses={
@@ -29,6 +32,7 @@ const handleAddExpenses=()=>{
 
 console.log('expense',expenses);
   return (
+    
     <div class='flex flex-col space-y-4'>
       <form class='flex space-x-4'>
       <div class='flex-auto w-32'>
@@ -50,8 +54,10 @@ console.log('expense',expenses);
         <button onClick={()=>{handleAddExpenses()}} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 
       </form>
+
+
         
-    <Expenses expenses={expenses}/>
+    <Expenses expenses={expenses} particulars={particulars}/>
     </div>
     
   )
